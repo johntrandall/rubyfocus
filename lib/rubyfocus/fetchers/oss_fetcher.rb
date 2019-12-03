@@ -94,7 +94,7 @@ class Rubyfocus::OSSFetcher < Rubyfocus::Fetcher
 	end
 
 	def url
-		"https://sync.omnigroup.com/#{@username}/OmniFocus.ofocus"
+		"https://sync2.omnigroup.com/#{@username}/OmniFocus.ofocus"
 	end
 
 	def fetch_file(f)
