@@ -87,20 +87,29 @@ describe Rubyfocus::OSSFetcher do
 
   describe 'live' do
     let(:omnifocus_username) { ENV['OMNIFOCUS_WEB_USERNAME'] }
-    let(:live_instance) { described_class.new(omnifocus_username, ENV['OMNIFOCUS_WEB_PASSWORD']) }
+    let(:omnifocus_password) { ENV['OMNIFOCUS_WEB_PASSWORD'] }
+
+    let(:live_instance) {
+      described_class.new(omnifocus_username, omnifocus_password)
+    }
+
+    before do
+      expect(omnifocus_username).not_to be_nil
+      expect(omnifocus_password).not_to be_nil
+    end
 
     describe '#files' do
       it 'fetches the files' do
         files = live_instance.files
         expect(files).to be_an_instance_of(Array)
-        expect(files).to include "/#{omnifocus_username}/"
+        expect(files.select { |filename| filename.include? omnifocus_username }.count).to eq 1
       end
     end
 
     describe '#patches' do
       it 'Fetches a list of every patch file' do
         expect(live_instance.patches).to be_an_instance_of(Array)
-        expect(live_instance.patches.size).to eq 1638
+        expect(live_instance.patches.size).to eq 1942
       end
     end
 
