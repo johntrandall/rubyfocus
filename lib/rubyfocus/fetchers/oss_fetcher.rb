@@ -102,6 +102,7 @@ class Rubyfocus::OSSFetcher < Rubyfocus::Fetcher
 		data = self.fetcher.get(fq_zipfile, digest_auth: auth).body
 		io = StringIO.new(data)
 		Zip::InputStream.open(io) do |io|
+		binding.pry
 			while (entry = io.get_next_entry)
 				return io.read if entry.name == "contents.xml"
 			end

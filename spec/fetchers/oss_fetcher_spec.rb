@@ -99,7 +99,7 @@ describe Rubyfocus::OSSFetcher do
     end
 
     describe '#files' do
-      it 'fetches the files' do
+      it 'fetches the file list' do
         files = live_instance.files
         expect(files).to be_an_instance_of(Array)
         expect(files.select { |filename| filename.include? omnifocus_username }.count).to eq 1
