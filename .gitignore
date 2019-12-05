@@ -4,3 +4,4 @@ stage_ofocus.rb
 spec/files/ofocus_staging
 .DS_Store
 .idea
+.env
